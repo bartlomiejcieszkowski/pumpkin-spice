@@ -1,0 +1,70 @@
+{
+  "devices": [
+	  "esp32cam" : {
+		  "comment": "all child nodes will inherit location",
+		  "location": {
+			  "transport": "ssh",
+			  "params": {
+				  "port": "22",
+				  "user": "pi",
+				  "hostname": "192.168.1.201",
+				  "tunnel": ""
+			  }
+		  },
+		  "power_on": [
+			  "pin": {
+				  "type": "gpio",
+				  "id": "27",
+				  "value": "0",
+				  "notes": "Relay 4ch, 1"
+			  }
+		  ],
+		  "upload_mode": [
+			  "pin": {
+				  "type": "gpio",
+				  "id": "23",
+				  "value": "0",
+				  "notes": "Relay 4ch, 3"
+			  }
+		  ],
+		  "serial": [
+			  "pin": {
+				  "type": "gpio",
+				  "id": "17",
+				  "value": "0",
+				  "notes": "rx pin"
+			  },
+			  "pin": {
+				  "type": "gpio",
+				  "id": "18",
+				  "value": "0",
+				  "notes": "tx pin"
+			  }
+		  ]
+	  },
+	  "ttgo-t-call" : {
+		  "power_on": [
+			  "pin": {
+				  "type": "gpio",
+				  "id": "22",
+				  "value": "0",
+				  "notes": "Relay 4ch, 2"
+			  }
+		  ],
+		  "serial": [
+			  "pin": {
+				  "type": "gpio",
+				  "id": "17",
+				  "value": "1",
+				  "notes": "rx pin"
+			  },
+			  "pin": {
+				  "type": "gpio",
+				  "id": "18",
+				  "value": "1",
+				  "notes": "tx pin"
+			  }
+		  ]
+	  }
+  ]
+}
