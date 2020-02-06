@@ -4,8 +4,11 @@ import getopt
 import sys
 from pathlib import Path
 
+import json
+import pprint
 import logging
 
+_global_cfg = {}
 _default_config = Path.cwd() / "nutmeg.json"
 _log_level = logging.INFO
 #_log_format = '%(asctime)s %(levelname)s: %(message)s'
@@ -29,6 +32,19 @@ def set_log_level(loglevel):
 
 def configure_logger():
     logging.basicConfig(level=_log_level, format=_log_format, datefmt=_log_datefmt)
+
+def load_config(cfg, path, append=True):
+    if not isinstance(path, Path):
+        return False
+    if not path.is_file():
+        return False
+
+    with path.open() as cfg_file:
+        local_cfg = json.load(cfg_file)
+        if not append:
+            cfg.clear()
+        cfg.update(local_cfg)
+
 
 
 def main():
@@ -54,6 +70,13 @@ def main():
 
     configure_logger()
     logging.info("yay")
+
+    global _global_cfg
+    global _default_config
+
+    load_config(_global_cfg, _default_config)
+    logging.info(pprint.pformat(_global_cfg))
+
 
 
 if __name__ == "__main__":
