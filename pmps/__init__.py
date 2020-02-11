@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from pmps.main import PmpsMain
+from pmps.log import logger
 import getopt
 import sys
 from pathlib import Path
@@ -52,35 +54,6 @@ def load_config(cfg, path, append=True):
 
 
 def main():
-    print(sys.argv[0])
-    # parse args
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], "hv", ["help", "verbose", "log="])
-    except getopt.GetoptError as err:
-        print(err)
-        usage()
-        sys.exit(2)
-    for o, a in opts:
-        if o in ("-v", "--verbose"):
-            _verbose = True
-        elif o in ("-h", "--help"):
-            usage()
-            sys.exit(0)
-        elif o in ("--log"):
-            set_log_level(a)
-        else:
-            usage()
-            sys.exit(2)
-
-    configure_logger()
-    logging.info("yay")
-
-    global _global_cfg
-    global _default_config
-
-    load_config(_global_cfg, _default_config)
-    logging.info(pprint.pformat(_global_cfg))
-
-
-if __name__ == "__main__":
-    main()
+    global __main_class
+    __main_class = PmpsMain()
+    __main_class.run()
