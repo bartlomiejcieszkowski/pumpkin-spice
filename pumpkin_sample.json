@@ -1,15 +1,34 @@
 {
+  "comment": "we have a storeroom, from which we take equipment",
+  "storeroom" : [
+    {
+      "id" : "BraveLittleToaster",
+      "type": "rpi",
+      "transport": "ssh",
+      "transport_params": {
+        "port": "22",
+        "user": "pi",
+        "hostname": "192.168.1.201"
+      }
+    }
+  ],
   "devices": [
     {
       "id": "esp32cam",
-      "comment": "all child nodes will inherit location",
-      "location": {
+      "comment": "all child nodes will inherit equipment from storeroom, in case of id clash - local will override global",
+      "equipment": {
+        "id": "BraveLittleToaster",
         "transport": "ssh",
-        "params": {
+        "type": "rpi",
+        "transport_params": {
           "port": "22",
           "user": "pi",
           "hostname": "192.168.1.201",
-          "tunnel": ""
+          "tunnel": {
+            "port": "6022",
+            "user": "pi",
+            "hostname": "192.168.1.15"
+          }
         }
       },
       "power_on": [
@@ -45,6 +64,8 @@
     },
     {
       "id": "ttgo-t-call",
+      "comment": "equipment can be a simple string or array or entry, string is a ref to id, entry - local device, array can have a mix",
+      "equipment": "BraveLittleToaster",
       "power_on": [
         {
           "type": "gpio",
