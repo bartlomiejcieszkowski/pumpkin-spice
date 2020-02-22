@@ -8,7 +8,7 @@
       "transport_params": {
         "port": "22",
         "user": "pi",
-        "hostname": "192.168.1.201"
+        "host": "192.168.1.201"
       }
     }
   ],
@@ -23,11 +23,11 @@
         "transport_params": {
           "port": "22",
           "user": "pi",
-          "hostname": "192.168.1.201",
+          "host": "192.168.1.201",
           "tunnel": {
             "port": "6022",
             "user": "pi",
-            "hostname": "192.168.1.15"
+            "host": "192.168.1.15"
           }
         }
       },
