@@ -9,10 +9,12 @@ from pmps.log import logger
 import pprint
 import json
 
+
 _default_config = Path.cwd() / "pumpkin_sample.json"
 
 class PmpsMain(object):
-    cfg = {}
+    def __init__(self):
+        self.cfg = {}
 
     def load_config(self, path, append=True):
         if not isinstance(path, Path):
@@ -66,6 +68,3 @@ class PmpsMain(object):
                  -v --verbose - makes log more verbose
                  --log={DEBUG|INFO|WARNING|ERROR|CRITICAL} - sets log level, defaults to INFO
               """)
-
-
-
